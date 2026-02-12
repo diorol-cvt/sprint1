@@ -1,8 +1,5 @@
-import java.util.Scanner;
-
-public class diorol {
+public class Homework {
     public static void main(String[] args) {
-
         System.out.println("Hello world");
         double R = 5.0; // инициализация в коде
         double V = (4.0 / 3.0) * Math.PI * Math.pow(R, 3);
@@ -18,7 +15,5 @@ public class diorol {
         double e = 3.0;
         double res = ((q + 2.0) * w - e) / w + w * e;
         System.out.println(res);
-        Scanner in = new Scanner(System.in); //github
-//        System.out.println(d);
     }
 }
