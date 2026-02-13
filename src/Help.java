@@ -23,5 +23,25 @@ public class Help {
         //} else {
         //   System.out.println("Почему ты не захотел со мной играть(");
         //   System.out.println("Приходи ещё!");
+        // && - and(python)
+        //Math.abs(x - personX) - модуль
+        //int x = Scanner.nextInt(); - input() (pyhton);                 || - or
+
+
+        //switch (<переменная>) {
+        //     case  <значение 1>:
+        //         <блок кода 1>
+        //         break;
+        //     case < значение 2>:
+        //         <блок кода 2>
+        //         break;
+        //...
+        //     case <значение N>:
+        //         <бок кода N>;
+        //         break;
+        //     default:
+        //         <блок кода по умолчанию>
+        //         break;
+        //}
     }
 }
