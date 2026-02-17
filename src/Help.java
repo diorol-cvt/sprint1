@@ -43,5 +43,6 @@ public class Help {
         //         <блок кода по умолчанию>
         //         break;
         //}
+       // Math.abs() - модуль
     }
 }
