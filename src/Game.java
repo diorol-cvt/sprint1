@@ -6,7 +6,7 @@ public class Game {
         int personY = 0;
         int step = 0;
         int personLive = 3;
-        int sizeBoard = 5;
+        int board = 5;
         String person = "Г";
         String monster = "Мм";
         String gamingField = "+ —— + —— + —— +\n"
@@ -26,12 +26,12 @@ public class Game {
                 System.out.println("Выбери уровень сложности игры(от 1 до 5):");
                 int difficultGame = scanner.nextInt();
                 if (difficultGame >= 1 & difficultGame <= 5) {
-                    System.out.println("Ваш уровень сложности: " + difficultGame);
+                    System.out.println("Уровень сложности: " + difficultGame);
                     System.out.println("Начальные координаты: 0, 0");
                     System.out.println("Твой ход:");
                     int x = scanner.nextInt();
                     int y = scanner.nextInt();
-                    if ((x == personX && y == personY) & ((x >= 0 & x <= 5) & (y >= 0 & y <= 5)) {
+                    if ((x == personX && y == personY) & (x >= 0 & x <= 5) & (y >= 0 & y <= 5)) {
                         System.out.println("Такой ход невозможен");
                     }
                     else {
@@ -41,7 +41,8 @@ public class Game {
                             step += 1;
                             System.out.println("Новые координаты: " + personX + ", " + personY);
                             System.out.println("Номер хода: " + step);
-                        } else {
+                        }
+                        else {
                             System.out.println("Координаты не поменялись");
                         }
                     }
