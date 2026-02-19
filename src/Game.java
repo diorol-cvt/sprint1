@@ -1,3 +1,4 @@
+import java.util.Random;
 import java.util.Scanner;
 
 public class Game {
@@ -6,16 +7,26 @@ public class Game {
         int personY = 0;
         int step = 0;
         int personLive = 3;
-        int sizeBoard = 5;
+        int size = 5;
+
+        String castle = "\uD83C\uDFF0";
+        int castleY = 1;
+        Random random = new Random();
+        int castelX = 1 + random.nextInt();
         String person = "Г";
         String monster = "Мм";
-        String gamingField = "+ —— + —— + —— +\n"
-                + "|    |    |    |\n"
-                + "+ —— + —— + —— +\n"
-                + "|    | " + monster + " |    |\n"
-                + "+ —— + —— + —— +\n"
-                + "| " + person + " |    |    |\n"
-                + "+ —— + —— + —— +";
+        String leftBlock = " | ";
+        String rightBlock = " |";
+        String wall = " + —— + —— + —— + —— + —— + ";
+
+        String gamingField = "+ —— + —— + —— + —— + —— + \n"
+                           + "|    |    |    |    |    |\n"
+                           + "+ —— + —— + —— + —— + —— +\n"
+                           + "|    |    | " + monster + " |    |    |\n"
+                           + "+ —— + —— + —— + —— + —— +\n"
+                           + "|    | " + person + " |    |    |    |\n"
+                           + "+ —— + —— + —— + —— + —— +";
+
         System.out.println("Привет! Ты готов начать играть в игру? (Напиши: ДА или НЕТ)");
         Scanner scanner = new Scanner(System.in);
         String answer = scanner.nextLine();
@@ -26,12 +37,12 @@ public class Game {
                 System.out.println("Выбери уровень сложности игры(от 1 до 5):");
                 int difficultGame = scanner.nextInt();
                 if (difficultGame >= 1 & difficultGame <= 5) {
-                    System.out.println("Ваш уровень сложности: " + difficultGame);
+                    System.out.println("Уровень сложности: " + difficultGame);
                     System.out.println("Начальные координаты: 0, 0");
                     System.out.println("Твой ход:");
                     int x = scanner.nextInt();
                     int y = scanner.nextInt();
-                    if ((x == personX && y == personY) & ((x >= 0 & x <= 5) & (y >= 0 & y <= 5)) {
+                    if ((x == personX && y == personY) & (x >= 0 & x <= 5) & (y >= 0 & y <= 5)) {
                         System.out.println("Такой ход невозможен");
                     }
                     else {
@@ -41,7 +52,8 @@ public class Game {
                             step += 1;
                             System.out.println("Новые координаты: " + personX + ", " + personY);
                             System.out.println("Номер хода: " + step);
-                        } else {
+                        }
+                        else {
                             System.out.println("Координаты не поменялись");
                         }
                     }
@@ -56,5 +68,19 @@ public class Game {
             default:
                 System.out.println("Некорректный ввод");
         }
+        while ((personLive > 0) & (castelX == personX && castleY == personY)) {
+            if (personLive >= 0) {
+                break;
+            }
+        }
+        System.out.println("Жизни закончились. Твой результат: ");
+        for (int y = 1; y <= size; y++) {
+            for (int x = 1; x <= size; x++) {
+                if (personX == x & personY == y){
+                    System.out.println("Yes");
+                }
+            }
+        }
+
     }
 }

@@ -20,6 +20,13 @@ public class Classwork {
             }
         }
 
-        System.out.println("The end");
+        //System.out.println("The end");
+        //for (int i = 0; i <= 5; i++) {
+        //    int square = i * i;
+        //    System.out.println(i + " - " + square);
+
+        //for (int i = 125; i > 1; i /= 5) {
+        //  System.out.println(i);
+        //}
+        }
     }
-}

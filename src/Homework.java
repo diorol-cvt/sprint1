@@ -15,5 +15,6 @@ public class Homework {
         double e = 3.0;
         double res = ((q + 2.0) * w - e) / w + w * e;
         System.out.println(res);
+
     }
 }
