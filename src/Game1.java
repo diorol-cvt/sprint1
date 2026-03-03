@@ -70,8 +70,53 @@ public class Game1 {
                                     if (board[x][y].equals(castle)) {
                                         System.out.println("Вы прошли игру!");
                                         break;
-                                    } else {
+                                    }
+                                    else {
+                                        int count = 3;
                                         System.out.println("Решите задачу.");
+                                        System.out.println("Количество попыток: " + count);
+                                        int a = random.nextInt(200);
+                                        int b = random.nextInt(200);
+                                        int trueAnswer = a + b;
+                                        System.out.println(a + " + " + b + " = ?");
+                                        int ans1 = scanner.nextInt();
+                                        if (trueAnswer == ans1) {
+                                            System.out.println("Верно! Идем дальше!");
+                                            board[personX][personY] = "  ";
+                                            personX = x;
+                                            personY = y;
+                                        }
+                                        else {
+                                            count--;
+                                            System.out.println("Попробуй еще раз.");
+                                            System.out.println("Количество попыток: " + count);
+                                            int ans2 = scanner.nextInt();
+                                            if (trueAnswer == ans2) {
+                                                System.out.println("Верно! Идем дальше!");
+                                                board[personX][personY] = "  ";
+                                                personX = x;
+                                                personY = y;
+                                            }
+                                            else {
+                                                count--;
+                                                System.out.println("Попробуй еще раз.");
+                                                System.out.println("Количество попыток: " + count);
+                                                int ans3 = scanner.nextInt();
+                                                if (trueAnswer == ans3) {
+                                                    System.out.println("Верно! Идем дальше!");
+                                                    board[personX][personY] = "  ";
+                                                    personX = x;
+                                                    personY = y;
+                                                }
+                                                else {
+                                                    personLive--;
+                                                    System.out.println("Попытки закончились. Идем дальше.");
+                                                    board[personX][personY] = "  ";
+                                                    personX = x;
+                                                    personY = y;
+                                                }
+                                            }
+                                        }
                                     }
                                 }
                             }
