@@ -5,9 +5,9 @@ public class Game {
         int step = 0;
         int personLive = 3;
         int sizeboard = 5;
-        int personX = 0;
-        int personY = 0;
-        int castleY = 4;
+        int personX = 1;
+        int personY = sizeboard;
+        int castleY = 0;
         Random random = new Random();
         int castleX = random.nextInt(sizeboard);
         String castle = "\uD83C\uDFF0";
@@ -17,16 +17,16 @@ public class Game {
         String rightBlock = " |";
         String wall = " + —— + —— + —— + —— + —— + ";
         String[][] board = new String[sizeboard][sizeboard];
-        for (int x = 0; x < sizeboard; x++) {
-            for (int y = 0; y < sizeboard; y++) {
-                board[x][y] = "  ";
+        for (int y = 0; y < sizeboard; y++) {
+            for (int x = 0; x < sizeboard; x++) {
+                board[y][x] = "  ";
             }
         }
-        int countMonster = sizeboard * (sizeboard - 3) - 1;
-        board[castleY][castleX] = castle;
+        int countMonster = sizeboard * (sizeboard - 1) - 1;
         for (int i = 0; i <= countMonster; i++) {
             board[random.nextInt(sizeboard - 1)][random.nextInt(sizeboard)] = monster;
         }
+        board[castleY][castleX] = castle;
         System.out.println("Привет! Начнем игру? (Напиши ДА или НЕТ)");
         Scanner scanner = new Scanner(System.in);
         String answer = scanner.nextLine();
@@ -38,46 +38,37 @@ public class Game {
                 int difficultGame = scanner.nextInt();
                 while (true) {
                     if (difficultGame <= 4 && difficultGame >= 1) {
-                        board[personX][personY] = person;
-                        System.out.println("Уровень игры: " + difficultGame);
-                        //                                System.out.println(gamingField);
-                        for (String[] raw : board) {
-                            System.out.println(wall);
-                            for (String col : raw) {
-                                System.out.print(leftBlock + col);
-                            }
-                            System.out.println(rightBlock);
-                        }
-                        System.out.println(wall);
-
+                        board[personY - 1][personX - 1] = person;
+                        outputboard(board);
                         System.out.println("Количество жизней: " + personLive);
                         System.out.println("Координаты персонажа: X = " + personX + ", Y = " + personY);
-                        System.out.println("Введи новые координаты через пробел(Например: 0 1).");
+                        System.out.println("Введи новые координаты через пробел(Например: 1 2).");
                         int x = scanner.nextInt();
                         int y = scanner.nextInt();
-                        if (x != personX && y != personY || (x < 0 || y < 0)) {
+                        if (x != personX && y != personY || x < 1 || y < 1 || y > 5 || x > 5) {
                             System.out.println("Такой ход невозможен!");
                         } else {
                             if (Math.abs(personX - x) == 1 || Math.abs(personY - y) == 1) {
-                                if (board[x][y].equals("  ")) {
-                                    board[personX][personY] = "  ";
+                                if (board[y - 1][x - 1].equals("  ")) {
+                                    board[personY - 1][personX - 1] = "  ";
                                     step += 1;
                                     personX = x;
                                     personY = y;
                                     System.out.println("Номер хода: " + step + "\nКоординаты персонажа: " + personX + ", " + personY);
                                 } else {
-                                    if (board[x][y].equals(castle)) {
+                                    if (board[y - 1][x - 1].equals(castle)) {
                                         System.out.println("Вы прошли игру!");
                                         break;
                                     } else {
-                                        System.out.println("Решите задачу.");
-                                        int key = random.nextInt(2);
-                                        if (taskMonster(0)) {
-                                            board[personX][personY] = "  ";
+                                        if (taskMonster(difficultGame)) {
+                                            board[personY - 1][personX - 1] = "  ";
                                             personX = x;
                                             personY = y;
                                         }
                                         else {
+                                            board[personY - 1][personX - 1] = "  ";
+                                            personX = x;
+                                            personY = y;
                                             personLive--;
                                         }
                                     }
@@ -95,6 +86,7 @@ public class Game {
                         break;
                     }
                 }
+                break;
             case "НЕТ":
                 System.out.println("Возвращайся, сыграем позже.");
                 break;
@@ -103,11 +95,10 @@ public class Game {
         }
     }
 
-    static boolean taskMonster(int key) {
-        if (key == 1) {
+    static boolean taskMonster(int difficultGame) {
+        if (difficultGame == 1) {
             Random random = new Random();
             Scanner scanner = new Scanner(System.in);
-            int personLive = 3;
             int count = 3;
             System.out.println("Решите задачу.");
             System.out.println("Количество попыток: " + count);
@@ -115,38 +106,23 @@ public class Game {
             int b = random.nextInt(200);
             int trueAnswer = a + b;
             System.out.println(a + " + " + b + " = ?");
-            int ans1 = scanner.nextInt();
-            if (trueAnswer == ans1) {
-                System.out.println("Верно! Идем дальше!");
-                return true;
-            } else {
-                count--;
-                System.out.println("Попробуй еще раз.");
-                System.out.println("Количество попыток: " + count);
-                int ans2 = scanner.nextInt();
-                if (trueAnswer == ans2) {
+            while (count > 0) {
+                int ans1 = scanner.nextInt();
+                if (trueAnswer == ans1) {
                     System.out.println("Верно! Идем дальше!");
                     return true;
                 } else {
-                    count--;
                     System.out.println("Попробуй еще раз.");
+                    count--;
                     System.out.println("Количество попыток: " + count);
-                    int ans3 = scanner.nextInt();
-                    if (trueAnswer == ans3) {
-                        System.out.println("Верно! Идем дальше!");
-                        return true;
-                    }
-                    else {
-                        personLive--;
-                        System.out.println("Попытки закончились. Идем дальше.");
-                        return false;
-                    }
                 }
             }
+            System.out.println("Попытки закончились.");
         }
         return false;
     }
-    static void outputboard(String[][] board, int live) {
+
+    static void outputboard(String[][] board) {
         String leftBlock = "| ";
         String rightBlock = "|";
         String wall = "+ —— + —— + —— + —— + —— +";
@@ -159,7 +135,5 @@ public class Game {
             System.out.println(rightBlock);
         }
         System.out.println(wall);
-
-        System.out.println("Live: " + live + "\n");
     }
 }
