@@ -1,3 +1,5 @@
+package Homework;
+
 public class Hw6 {
     public static void main(String[] args) {
         int n = 2;

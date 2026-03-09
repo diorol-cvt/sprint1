@@ -1,3 +1,5 @@
+package Homework;
+
 import java.util.Scanner;
 public class Hw11 {
     public static void main(String[] args) {

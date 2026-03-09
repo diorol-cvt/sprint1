@@ -1,3 +1,5 @@
+package Homework;
+
 public class Hw3 {
     public static void main(String[] args) {
         // (1 - y) * (2x + y2 - (x + y) / (y + 1 / (x2 - 4)))
