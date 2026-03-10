@@ -9,6 +9,7 @@ public class Game {
         int castleX = random.nextInt(sizeboard);
         String castle = "\uD83C\uDFF0";
         Person person = new Person(sizeboard);
+        Monster monster = new BigMonster(sizeboard);
         String[][] board = new String[sizeboard][sizeboard];
         for (int y = 0; y < sizeboard; y++) {
             for (int x = 0; x < sizeboard; x++) {
