@@ -1,6 +1,6 @@
 import java.util.Random;
 import java.util.Scanner;
-public class Monster {
+public abstract class Monster {
     Random random = new Random();
     Scanner scanner = new Scanner(System.in);
 
@@ -34,11 +34,21 @@ public class Monster {
 
     public boolean taskMonster(int difficultGame) {
         System.out.println("Решите задачу. Количество попыток: 3");
-        int a = random.nextInt(100);
-        int b = random.nextInt(100);
+        int a = random.nextInt(150);
+        int b = random.nextInt(150);
         int trueAnswer = a + b;
+        int count = 3;
         System.out.println(a + " + " + b + " = ?");
-        int ans1 = scanner.nextInt();
+        int ans = scanner.nextInt();
+        if (ans == trueAnswer) {
+            System.out.println("Верно! Идем дальше!");
+            return true;
+        }
+        else {
+            System.out.println("Ответ не верный. Идем дальше.");
+        }
         return false;
     }
+
+    public abstract boolean taskMonster();
 }

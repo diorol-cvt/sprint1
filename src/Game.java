@@ -9,13 +9,18 @@ public class Game {
         int castleX = random.nextInt(sizeboard);
         String castle = "\uD83C\uDFF0";
         Person person = new Person(sizeboard);
-        Monster monster = new BigMonster(sizeboard);
+        new BigMonster(sizeboard);
         String[][] board = new String[sizeboard][sizeboard];
         for (int y = 0; y < sizeboard; y++) {
             for (int x = 0; x < sizeboard; x++) {
                 board[y][x] = "  ";
             }
         }
+        String happyend = "_______________________\n" +
+                          "|                     |\n" +
+                          "|     Ты молодец!     |\n" +
+                          "|                     |\n" +
+                          "-----------------------\n";
         int countMonster = sizeboard * (sizeboard - 1) - 5;
         Monster[] arrMonster = new Monster[countMonster + 1];
         int count = 0;
@@ -39,7 +44,7 @@ public class Game {
                 System.out.println("Выбери уровень сложности игры(от 1 до 5):");
                 int difficultGame = scanner.nextInt();
                 while (true) {
-                    if (difficultGame <= 4 && difficultGame >= 1) {
+                    if (difficultGame <= 5 && difficultGame >= 1) {
                         board[person.getY() - 1][person.getX() - 1] = person.getImage();
                         outputboard(board);
                         System.out.println("Количество жизней: " + person.getLive());
@@ -55,18 +60,18 @@ public class Game {
                                 person.move(x, y);
                                 System.out.println("Номер хода: " + step + "\nКоординаты персонажа: " + person.getX() + ", " + person.getY());
                             } else if (next.equals(castle)) {
+                                System.out.println(happyend);
                                 System.out.println("Вы прошли игру!");
                                 break;
                             } else {
                                 for (Monster monster : arrMonster) {
                                     if (monster.conflict(x, y)) {
-                                        if (monster.taskMonster(difficultGame)) {
-                                            board[person.getY() - 1][person.getX() - 1] = "  ";
-                                            person.move(x, y);
-                                        }
-                                        else {
+                                        if (!BigMonster.taskMonster(difficultGame)) {
                                             person.downLive();
 
+                                        } else {
+                                            board[person.getY() - 1][person.getX() - 1] = "  ";
+                                            person.move(x, y);
                                         }
                                         break;
                                     }
