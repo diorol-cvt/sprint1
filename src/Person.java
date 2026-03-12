@@ -22,10 +22,17 @@ public class Person {
         return this.x == x && Math.abs(this.y - y) == 1 || this.y == y && Math.abs(this.x - x) == 1;
     }
     public void downLive() {
-        if (live < 0)
+        if (live < 0) {
             live = 0;
-        else
-            this.live--;
+        }
+        else {
+            if (live != 0) {
+                this.live--;
+            }
+            else {
+                System.out.println("Жизни закончились. Конец игры.");
+            }
+        }
     }
     public int getX() {
         return x;

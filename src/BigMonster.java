@@ -14,17 +14,16 @@ public class BigMonster extends Monster {
         this.image = image;
     }
     @Override
-    public static boolean taskMonster(int difficultGame) {
+    public boolean taskMonster(int difficultGame) {
         Random random = new Random();
         System.out.println("Решите задачу.");
         int trueAnswer;
         int a, b, c;
         if (difficultGame == 1) {
-            a = random.nextInt(300);
-            b = random.nextInt(300);
-            c = random.nextInt(300);
-            trueAnswer = a + b - c;
-            System.out.println(a + " + " + b + " - " + c + " = ?");
+            a = random.nextInt(50, 150);
+            b = random.nextInt(50, 150);
+            trueAnswer = a + b;
+            System.out.println(a + " + " + b + " = ?");
             check(trueAnswer);
         }
         else {
@@ -67,9 +66,6 @@ public class BigMonster extends Monster {
             }
         }
         return false;
-    }
-    public boolean taskMonster() {
-        return super.taskMonster(1);
     }
     public static boolean check(int trueAnswer) {
         Scanner scanner = new Scanner(System.in);
