@@ -1,8 +1,10 @@
+package Game;
+
 import java.util.Random;
 import java.util.Scanner;
 public class Monster {
+    private static int difficultGame;
     Random random = new Random();
-    Scanner scanner = new Scanner(System.in);
 
     private String image = "\uD83E\uDDDF\u200D";
     private final int x, y;
@@ -33,6 +35,9 @@ public class Monster {
     }
 
     public boolean taskMonster(int difficultGame) {
+        Monster.difficultGame = difficultGame;
+        Random random = new Random();
+        Scanner scanner = new Scanner(System.in);
         System.out.println("Решите задачу. Количество попыток: 1");
         int a = random.nextInt(50,120);
         int b = random.nextInt(50,120);
@@ -40,11 +45,11 @@ public class Monster {
         System.out.println(a + " + " + b + " = ?");
         int ans = scanner.nextInt();
         if (ans == trueAnswer) {
-            System.out.println("Верно! Идем дальше!");
+            System.out.println("Верно!");
             return true;
         }
         else {
-            System.out.println("Ответ неверный. Идем дальше.");
+            System.out.println("Ответ неверный. Количество жизней уменьшилось.");
         }
         return false;
     }

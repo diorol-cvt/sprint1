@@ -1,6 +1,6 @@
 package Homework;
 
-public class Hw3 {
+public class Hw004 {
     public static void main(String[] args) {
         // (1 - y) * (2x + y2 - (x + y) / (y + 1 / (x2 - 4)))
         // r - результат
@@ -18,4 +18,3 @@ public class Hw3 {
         System.out.println(r9);
     }
 }
-

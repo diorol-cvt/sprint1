@@ -1,21 +1,22 @@
 package Homework;
 
 import java.util.Scanner;
-public class Hw11 {
+
+public class Hw011 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        int f = 1;
         int n = scanner.nextInt();
-        int result = 1;
         if (n % 2 == 0) {
             for (int i = 2; i <= n; i += 2) {
-                result *= i;
+                f *= i;
             }
         }
         else {
             for (int i = 1; i <= n; i += 2) {
-                result *= i;
+                f *= i;
             }
         }
-        System.out.println(result);
+        System.out.println(f);
     }
 }

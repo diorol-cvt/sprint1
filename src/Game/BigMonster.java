@@ -1,3 +1,5 @@
+package Game;
+
 import java.util.Random;
 import java.util.Scanner;
 
@@ -13,12 +15,12 @@ public class BigMonster extends Monster {
     public void setImage(String image) {
         this.image = image;
     }
-    @Override
     public boolean taskMonster(int difficultGame) {
         Random random = new Random();
         System.out.println("Решите задачу.");
         int trueAnswer;
         int a, b, c;
+        boolean ret = true;
         if (difficultGame == 1) {
             a = random.nextInt(50, 150);
             b = random.nextInt(50, 150);
@@ -65,28 +67,29 @@ public class BigMonster extends Monster {
                 }
             }
         }
-        return false;
+        return ret;
     }
-    public static boolean check(int trueAnswer) {
+    public boolean check(int trueAnswer) {
         Scanner scanner = new Scanner(System.in);
-        int count = 3;
-        while (count > 1) {
+        int attempt = 3;
+        while (attempt > 1) {
             int ans1 = scanner.nextInt();
             if (trueAnswer == ans1) {
-                System.out.println("Верно! Идем дальше!");
+                System.out.println("Верно!");
                 return true;
             } else {
-                count--;
-                System.out.println("Попробуй еще раз. Количество попыток: " + count);
+                attempt--;
+                System.out.println("Попробуй еще раз. Количество попыток: " + attempt);
             }
         }
         int ans2 = scanner.nextInt();
         if (trueAnswer == ans2) {
-            System.out.println("Верно! Идем дальше!");
+            System.out.println("Верно!");
             return true;
         }
         else {
-            System.out.println("Попытки закончились. Количество жизней уменьшилось.\nИдем дальше.");
+            System.out.println("Попытки закончились. Количество жизней уменьшилось.");
+            Person.live--;
         }
         return false;
     }
